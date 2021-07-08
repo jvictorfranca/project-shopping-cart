@@ -106,11 +106,17 @@ const createListFromLocalStorage = () => {
   });
 };
 
+const emptButton = async () => {
+  document.querySelectorAll('ol.cart__items li').forEach((li) => li.remove());
+  localStorage.clear();
+  summing();
+};
+
 // fetchElement('https://api.mercadolibre.com/sites/MLB/search?q=$computador');
 window.onload = () => {
   ol = document.querySelector('ol.cart__items');
   createCart('https://api.mercadolibre.com/sites/MLB/search?q=$computador');
   ol.addEventListener('click', cartItemClickListener);
-  
   createListFromLocalStorage();
+  document.querySelector('.empty-cart').addEventListener('click', emptButton);
 };
