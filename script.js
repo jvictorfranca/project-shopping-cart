@@ -65,7 +65,7 @@ const createCart = async (url) => {
   const lista = await fetchElement(url);  
   console.log(lista); 
     const buttons = document.querySelectorAll('section.items button.item__add');
-    buttons.forEach((button, index) => {
+    buttons.forEach((button) => {
       button.addEventListener('click', () => {
         const id = getSkuFromProductItem(button.parentElement);
         fetch(`https://api.mercadolibre.com/items/${id}`).then((bites) => bites.json())
