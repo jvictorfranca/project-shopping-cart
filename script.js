@@ -113,10 +113,20 @@ const emptButton = async () => {
 };
 
 // fetchElement('https://api.mercadolibre.com/sites/MLB/search?q=$computador');
+  
+function changeP() {
+document.querySelector('.loading').remove();
+}
+
+  async function openCart() {
+    await createCart('https://api.mercadolibre.com/sites/MLB/search?q=$computador');
+    changeP();
+    ol = document.querySelector('ol.cart__items');
+    ol.addEventListener('click', cartItemClickListener);
+    createListFromLocalStorage();
+    document.querySelector('.empty-cart').addEventListener('click', emptButton);
+  } 
+
 window.onload = () => {
-  ol = document.querySelector('ol.cart__items');
-  createCart('https://api.mercadolibre.com/sites/MLB/search?q=$computador');
-  ol.addEventListener('click', cartItemClickListener);
-  createListFromLocalStorage();
-  document.querySelector('.empty-cart').addEventListener('click', emptButton);
+  openCart();
 };
